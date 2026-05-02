@@ -1,68 +1,552 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Golden System</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Golden System | Tecnologia Agrícola</title>
 
   <style>
-    body {
+    :root {
+      --gold: #d6a84f;
+      --gold-light: #f3cf7a;
+      --dark: #050505;
+      --green: #073f37;
+      --green-soft: #eaf3ef;
+      --white: #ffffff;
+      --text: #16302d;
+    }
+
+    * {
+      box-sizing: border-box;
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0c4cae;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: var(--white);
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 22px 7%;
+      background: rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(8px);
+      color: white;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 22px;
+      color: var(--gold-light);
+    }
+
+    .logo img {
+      height: 52px;
+      max-width: 170px;
+      object-fit: contain;
+    }
+
+    .menu {
+      display: flex;
+      gap: 30px;
+      font-weight: 700;
+      font-size: 15px;
+    }
+
+    .nav-btn {
+      background: var(--white);
+      color: var(--green);
+      padding: 12px 22px;
+      border-radius: 999px;
+      font-weight: 800;
+    }
+
+    .hero {
+      min-height: 100vh;
+      background:
+        linear-gradient(rgba(0,0,0,.67), rgba(0,0,0,.72)),
+        url("https://images.unsplash.com/photo-1625246333195-78d9c38ad449?q=80&w=1600&auto=format&fit=crop");
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      padding: 120px 7% 70px;
+      color: white;
+    }
+
+    .hero-content {
+      max-width: 720px;
+    }
+
+    .tag {
+      display: inline-block;
+      background: rgba(214,168,79,.18);
+      color: var(--gold-light);
+      border: 1px solid rgba(214,168,79,.5);
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-weight: 800;
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 6vw, 78px);
+      line-height: 1.02;
+      margin-bottom: 24px;
+    }
+
+    .hero p {
+      font-size: 22px;
+      line-height: 1.5;
+      max-width: 620px;
+      opacity: .95;
+      margin-bottom: 34px;
+    }
+
+    .btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      padding: 16px 28px;
+      border-radius: 999px;
+      font-weight: 900;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: #111;
+    }
+
+    .btn-secondary {
+      border: 1px solid rgba(255,255,255,.55);
+      color: white;
+    }
+
+    section {
+      padding: 90px 7%;
+    }
+
+    .section-title {
+      max-width: 760px;
+      margin-bottom: 45px;
+    }
+
+    .section-title span {
+      background: #d9efdc;
+      color: var(--green);
+      padding: 8px 18px;
+      border-radius: 999px;
+      font-weight: 800;
+      display: inline-block;
+      margin-bottom: 18px;
+    }
+
+    .section-title h2 {
+      font-size: clamp(36px, 5vw, 62px);
+      line-height: 1.05;
+      color: var(--green);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .card {
+      background: var(--green-soft);
+      border-radius: 26px;
+      padding: 28px;
+      min-height: 360px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    }
+
+    .card small {
+      color: #67a96f;
+      font-weight: 900;
+      font-size: 16px;
+    }
+
+    .card h3 {
+      font-size: 30px;
+      color: var(--green);
+      margin: 14px 0;
+    }
+
+    .card p {
+      font-size: 17px;
+      line-height: 1.45;
+    }
+
+    .card-img {
+      margin-top: 25px;
+      height: 180px;
+      background: white;
+      border-radius: 70px 18px 18px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      font-size: 52px;
+      font-weight: 900;
+    }
+
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .about h2 {
+      font-size: clamp(38px, 5vw, 62px);
+      color: var(--green);
+      margin-bottom: 22px;
+    }
+
+    .about p {
+      font-size: 20px;
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    .features {
+      display: grid;
+      gap: 24px;
+    }
+
+    .feature {
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+    }
+
+    .icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: var(--gold);
+      color: #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      flex: none;
+    }
+
+    .media-box {
+      min-height: 430px;
+      border-radius: 42px;
+      background:
+        linear-gradient(rgba(7,63,55,.55), rgba(7,63,55,.65)),
+        url("https://images.unsplash.com/photo-1586771107445-d3ca888129ce?q=80&w=1300&auto=format&fit=crop");
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 30px 70px rgba(0,0,0,.18);
+    }
+
+    .cta {
+      background: var(--dark);
+      color: white;
+      text-align: center;
+      border-radius: 44px;
+      margin: 40px 7% 90px;
+      padding: 80px 30px;
+    }
+
+    .cta h2 {
+      font-size: clamp(36px, 5vw, 62px);
+      margin-bottom: 20px;
+      color: var(--gold-light);
+    }
+
+    .cta p {
+      font-size: 20px;
+      margin-bottom: 30px;
+      opacity: .9;
+    }
+
+    .whatsapp {
+      position: fixed;
+      right: 26px;
+      bottom: 26px;
+      width: 70px;
+      height: 70px;
+      background: #25d366;
+      border-radius: 50%;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 34px;
+      font-weight: 900;
+      box-shadow: 0 12px 35px rgba(37,211,102,.45);
+      z-index: 20;
+    }
+
+    footer {
+      padding: 35px 7%;
+      background: var(--green);
       color: white;
       text-align: center;
     }
 
-    header {
-      padding: 100px 20px;
+    @media (max-width: 980px) {
+      .menu {
+        display: none;
+      }
+
+      .cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .about {
+        grid-template-columns: 1fr;
+      }
     }
 
-    h1 {
-      font-size: 48px;
-      margin-bottom: 10px;
-    }
+    @media (max-width: 620px) {
+      .navbar {
+        padding: 16px 5%;
+      }
 
-    p {
-      font-size: 20px;
-    }
+      .logo img {
+        height: 42px;
+      }
 
-    .btn {
-      display: inline-block;
-      margin-top: 30px;
-      padding: 15px 30px;
-      background: #fff;
-      color: #0c4cae;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 8px;
-      transition: 0.3s;
-    }
+      .nav-btn {
+        padding: 10px 16px;
+        font-size: 13px;
+      }
 
-    .btn:hover {
-      background: #f1f1f1;
-    }
+      .hero {
+        padding: 110px 5% 60px;
+      }
 
-    section {
-      padding: 60px 20px;
-      background: #fff;
-      color: #0c4cae;
+      .hero p {
+        font-size: 18px;
+      }
+
+      section {
+        padding: 65px 5%;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        min-height: 320px;
+      }
+
+      .cta {
+        margin: 20px 5% 70px;
+        border-radius: 30px;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <header>
-    <h1>Golden System</h1>
-    <p>Soluções inteligentes para gestão e tecnologia</p>
-    <a class="btn" href="https://wa.me/SEUNUMERO">Fale conosco</a>
+  <header class="navbar">
+    <div class="logo">
+      <img src="logo.png" alt="Golden System">
+    </div>
+
+    <nav class="menu">
+      <a href="#sobre">Sobre</a>
+      <a href="#produtos">Produtos</a>
+      <a href="#solucoes">Soluções</a>
+      <a href="#contato">Contato</a>
+    </nav>
+
+    <a class="nav-btn" href="https://wa.me/SEUNUMERO">Entre em contato</a>
   </header>
 
-  <section>
-    <h2>Sobre</h2>
-    <p>Transformando processos em resultados reais.</p>
-  </section>
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <span class="tag">Tecnologia agrícola</span>
+        <h1>Soluções inteligentes para o agro produzir mais.</h1>
+        <p>
+          A Golden System desenvolve tecnologia, automação e soluções aplicadas
+          ao campo para aumentar produtividade, controle e eficiência operacional.
+        </p>
+
+        <div class="btns">
+          <a class="btn-primary" href="https://wa.me/SEUNUMERO">Falar com especialista</a>
+          <a class="btn-secondary" href="#produtos">Conhecer soluções</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="produtos">
+      <div class="section-title">
+        <span>Produtos</span>
+        <h2>Conheça nossas soluções para o agro</h2>
+      </div>
+
+      <div class="cards">
+        <div class="card">
+          <div>
+            <small>Monitoramento</small>
+            <h3>Controle Agrícola</h3>
+            <p>Soluções para acompanhar operações, reduzir falhas e melhorar decisões no campo.</p>
+          </div>
+          <div class="card-img">01</div>
+        </div>
+
+        <div class="card">
+          <div>
+            <small>Automação</small>
+            <h3>Sistemas Inteligentes</h3>
+            <p>Tecnologias para automatizar processos e elevar a performance agrícola.</p>
+          </div>
+          <div class="card-img">02</div>
+        </div>
+
+        <div class="card">
+          <div>
+            <small>Precisão</small>
+            <h3>Integração Técnica</h3>
+            <p>Projetos aplicados com foco em compatibilidade, durabilidade e eficiência.</p>
+          </div>
+          <div class="card-img">03</div>
+        </div>
+
+        <div class="card">
+          <div>
+            <small>Gestão</small>
+            <h3>Dados e Produtividade</h3>
+            <p>Ferramentas para transformar operação agrícola em informação estratégica.</p>
+          </div>
+          <div class="card-img">04</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sobre" class="about">
+      <div>
+        <span class="tag">Sobre</span>
+        <h2>Presença técnica com foco em resultado no campo.</h2>
+        <p>
+          Atuamos com soluções voltadas à tecnologia agrícola, conectando
+          conhecimento técnico, inovação e atendimento próximo ao produtor,
+          revendas e empresas do setor.
+        </p>
+
+        <div class="features">
+          <div class="feature">
+            <div class="icon">✓</div>
+            <div>
+              <h3>Atendimento técnico</h3>
+              <p>Suporte especializado para entender a necessidade real da operação.</p>
+            </div>
+          </div>
+
+          <div class="feature">
+            <div class="icon">✓</div>
+            <div>
+              <h3>Soluções sob medida</h3>
+              <p>Projetos pensados para diferentes aplicações no ambiente agrícola.</p>
+            </div>
+          </div>
+
+          <div class="feature">
+            <div class="icon">✓</div>
+            <div>
+              <h3>Visão de futuro</h3>
+              <p>Base preparada para evoluir de landing page para site completo e e-commerce.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="media-box"></div>
+    </section>
+
+    <section id="solucoes">
+      <div class="section-title">
+        <span>Soluções</span>
+        <h2>Tecnologia, campo e gestão em um só caminho</h2>
+      </div>
+
+      <div class="cards">
+        <div class="card">
+          <div>
+            <small>Etapa 1</small>
+            <h3>Landing Page</h3>
+            <p>Apresentação objetiva da marca e captação de contatos qualificados.</p>
+          </div>
+          <div class="card-img">LP</div>
+        </div>
+
+        <div class="card">
+          <div>
+            <small>Etapa 2</small>
+            <h3>Site Profissional</h3>
+            <p>Estrutura completa com páginas, blog, produtos, autoridade e posicionamento.</p>
+          </div>
+          <div class="card-img">WEB</div>
+        </div>
+
+        <div class="card">
+          <div>
+            <small>Etapa 3</small>
+            <h3>E-commerce</h3>
+            <p>Venda de produtos, catálogo, pedidos e integração futura com sistemas.</p>
+          </div>
+          <div class="card-img">SHOP</div>
+        </div>
+
+        <div class="card">
+          <div>
+            <small>Etapa 4</small>
+            <h3>Sistema</h3>
+            <p>Base preparada para painel, login, gestão e automações futuras.</p>
+          </div>
+          <div class="card-img">ERP</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contato" class="cta">
+      <h2>Vamos transformar tecnologia em produtividade?</h2>
+      <p>Fale com a Golden System e conheça as soluções para sua operação.</p>
+      <a class="btn-primary" href="https://wa.me/SEUNUMERO">Chamar no WhatsApp</a>
+    </section>
+  </main>
+
+  <a class="whatsapp" href="https://wa.me/SEUNUMERO">☏</a>
+
+  <footer>
+    <p>© 2026 Golden System — Tecnologia Agrícola</p>
+  </footer>
 
 </body>
 </html>
