@@ -1,205 +1,66 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Golden System | Tecnologia Agrícola</title>
+<nav class="menu">
+  <a href="#sobre">Sobre</a>
+  <a href="#produtos">Produtos</a>
+  <a href="#solucoes">Soluções</a>
+  <a href="#contato">Contato</a>
+</nav>
 
-<style>
-:root {
-  --gold: #d6a84f;
-  --gold-light: #f3cf7a;
-  --dark: #050505;
-  --green: #073f37;
-  --green-soft: #eaf3ef;
-  --white: #ffffff;
-  --text: #16302d;
-}
+<a class="nav-btn" href="https://wa.me/SEUNUMERO">Entre em contato</a>
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  background: var(--white);
-  color: var(--text);
-}
-
-/* NAVBAR */
-.navbar {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 10;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 18px 7%;
-  background: rgba(0,0,0,0.6);
-  backdrop-filter: blur(10px);
-}
-
-.logo img {
-  height: 70px;
-  transition: 0.3s;
-}
-
-/* MENU */
-.menu {
-  display: flex;
-  gap: 30px;
-  font-weight: 700;
-  color: white;
-}
-
-.nav-btn {
-  background: white;
-  color: var(--green);
-  padding: 10px 20px;
-  border-radius: 999px;
-  font-weight: bold;
-}
-
-/* HERO */
-.hero {
-  min-height: 100vh;
-  background:
-    linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.75)),
-    url("https://images.unsplash.com/photo-1625246333195-78d9c38ad449?q=80&w=1600&auto=format&fit=crop");
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: center;
-  padding: 120px 7% 60px;
-  color: white;
-}
-
-.hero-content {
-  max-width: 700px;
-}
-
-.tag {
-  background: rgba(214,168,79,.2);
-  padding: 8px 16px;
-  border-radius: 999px;
-  display: inline-block;
-  margin-bottom: 20px;
-}
-
-h1 {
-  font-size: clamp(40px,6vw,70px);
-  margin-bottom: 20px;
-}
-
-.hero p {
-  font-size: 20px;
-  margin-bottom: 30px;
-}
-
-.btn-primary {
-  background: var(--gold);
-  padding: 14px 26px;
-  border-radius: 999px;
-  font-weight: bold;
-  color: black;
-}
-
-/* SECTION */
-section {
-  padding: 80px 7%;
-}
-
-.cards {
-  display: grid;
-  grid-template-columns: repeat(4,1fr);
-  gap: 20px;
-}
-
-.card {
-  background: var(--green-soft);
-  padding: 25px;
-  border-radius: 20px;
-}
-
-.card h3 {
-  color: var(--green);
-  margin: 10px 0;
-}
-
-/* RESPONSIVO */
-@media(max-width:900px){
-  .menu{display:none;}
-  .cards{grid-template-columns:1fr 1fr;}
-}
-
-@media(max-width:600px){
-  .cards{grid-template-columns:1fr;}
-}
-</style>
-</head>
-
-<body>
-
-<header class="navbar">
-
-  <!-- 🔥 LOGO CORRIGIDA -->
-  <div class="logo">
-    <img src="/logo.png?v=2" alt="Golden System">
-  </div>
-
-  <nav class="menu">
-    <a href="#sobre">Sobre</a>
-    <a href="#produtos">Produtos</a>
-    <a href="#contato">Contato</a>
-  </nav>
-
-  <a class="nav-btn" href="#">Contato</a>
-
-</header>
-
-<section class="hero">
-  <div class="hero-content">
-    <span class="tag">Tecnologia agrícola</span>
-    <h1>Soluções inteligentes para o agro produzir mais.</h1>
-    <p>Automação, controle e tecnologia aplicada ao campo para máxima performance.</p>
-    <a class="btn-primary" href="#">Falar com especialista</a>
+    <div class="btns">
+      <a class="btn-primary" href="https://wa.me/SEUNUMERO">Falar com especialista</a>
+      <a class="btn-secondary" href="#produtos">Conhecer soluções</a>
+    </div>
   </div>
 </section>
 
 <section id="produtos">
-  <h2>Produtos</h2>
+  <div class="section-title">
+    <span>Produtos</span>
+    <h2>Conheça nossas soluções para o agro</h2>
+  </div>
 
   <div class="cards">
     <div class="card">
-      <h3>Controle Agrícola</h3>
-      <p>Monitoramento e gestão no campo.</p>
+      <div>
+        <small>Monitoramento</small>
+        <h3>Controle Agrícola</h3>
+        <p>Soluções para acompanhar operações, reduzir falhas e melhorar decisões no campo.</p>
+      </div>
+      <div class="card-img">01</div>
     </div>
 
     <div class="card">
-      <h3>Automação</h3>
-      <p>Sistemas inteligentes aplicados ao agro.</p>
+      <div>
+        <small>Automação</small>
+        <h3>Sistemas Inteligentes</h3>
+        <p>Tecnologias para automatizar processos e elevar a performance agrícola.</p>
+      </div>
+      <div class="card-img">02</div>
     </div>
 
     <div class="card">
-      <h3>Precisão</h3>
-      <p>Integração técnica de alta performance.</p>
+      <div>
+        <small>Precisão</small>
+        <h3>Integração Técnica</h3>
+        <p>Projetos aplicados com foco em compatibilidade, durabilidade e eficiência.</p>
+      </div>
+      <div class="card-img">03</div>
     </div>
 
     <div class="card">
-      <h3>Gestão</h3>
-      <p>Dados e produtividade estratégica.</p>
+      <div>
+        <small>Gestão</small>
+        <h3>Dados e Produtividade</h3>
+        <p>Ferramentas para transformar operação agrícola em informação estratégica.</p>
+      </div>
+      <div class="card-img">04</div>
     </div>
   </div>
-
 </section>
 
-<section id="contato">
-  <h2>Contato</h2>
-  <p>Fale com a Golden System.</p>
-</section>
-
-</body>
-</html>
+<section id="sobre" class="about">
+  <div>
+    <span class="tag">Sobre</span>
+    <h2>Presença técnica com foco em resultado no campo.</h2>
+    <p>
